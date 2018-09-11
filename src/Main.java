@@ -26,5 +26,13 @@ public class Main extends JPanel {
         frame.setResizable(false);
     }
 
+    public void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D)g;
+        super.paintComponent(g2);
+
+        Grid gr = new Grid();
+        gr.draw(g2);
+    }
+
 
 }
