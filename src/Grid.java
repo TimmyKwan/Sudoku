@@ -27,9 +27,10 @@ public class Grid {
             for (int j = 0; j < 3; j++) {
                 g2.setStroke(new BasicStroke(2));
                 g2.drawRect(i*243,j*243,243,243);
+                g2.setStroke(new BasicStroke(1));
+                //cell
                 for (int k = 0; k < 3; k++) {
                     for (int l = 0; l < 3; l++) {
-                        g2.setStroke(new BasicStroke(1));
                         g2.drawRect(k*81 + i*243, l*81 + j*243, 81,81);
                     }
                 }
