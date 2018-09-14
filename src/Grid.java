@@ -2,6 +2,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 public class Grid {
 
@@ -18,7 +19,6 @@ public class Grid {
                 }
             }
         }
-
     }
 
     public void draw(Graphics2D g2){
@@ -38,4 +38,5 @@ public class Grid {
 
         }
     }
+
 }
