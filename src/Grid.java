@@ -6,20 +6,27 @@ import java.util.ArrayList;
 
 public class Grid {
 
-    private int[][][][] grid;
+    private int[][][][] grid, arr;
+    private ReadTextFile a;
 
     public Grid(){
         grid = new int[3][3][3][3];
+        a=new ReadTextFile();
+        arr = a.getGrid();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 for (int k = 0; k < 3; k++) {
                     for (int l = 0; l < 3; l++) {
-                        grid[i][j][k][l] = 0;
+                        grid[i][j][k][l] = arr[i][j][k][l];
                     }
                 }
             }
         }
+
+
+
     }
+
 
     public void draw(Graphics2D g2){
         //cell group

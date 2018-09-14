@@ -6,8 +6,21 @@ import java.util.Arrays;
 
 public class ReadTextFile {
 
+    private static int[][][][] arr;
+
+    public ReadTextFile(){
+        arr =new int[3][3][3][3];
+    }
+
 
     public static void main(String[] args) throws IOException {
+
+        int boxRow, boxCol, cellRow, cellCol;
+
+        boxRow=0;
+        boxCol=0;
+        cellRow=0;
+        cellCol=0;
 
         String[] a = new String[9];
 
@@ -17,33 +30,53 @@ public class ReadTextFile {
 
             BufferedReader b = new BufferedReader(new FileReader(f));
 
-//            String line = b.readLine();
-//            System.out.println(line);
             String readLine = "";
 
             System.out.println("Reading file using Buffered Reader");
-
             while ((readLine = b.readLine()) != null) {
-//                System.out.println(Arrays.toString(line.split(" ")));
                 a = readLine.split(" ");
-//                System.out.println(Arrays.toString(a));
-
-//                String number = Arrays.toString(a);
-//                System.out.println(number);
-//                System.out.println(a[1]);
 
                 int[] nums = new int[9];
+//                for (int i = 0; i < 3; i++) {
+//                    for (int j = 0; j < 3; j++) {
+//                        for (int k = 0; k < 3; k++) {
+//                            for (int l = 0; l < 3; l++) {
+//                                int q = Integer.parseInt(a[i]);
+//                                nums[i]=q;
+//                                array [i][k][j][l] = q;
+//                            }
+//
+//                        }
+//
+//                    }
+//
+//                }
                 for (int i = 0; i < 9; i++) {
                     int q = Integer.parseInt(a[i]);
-//                    System.out.println(q);
                     nums[i]=q;
+
+                    arr[boxRow][boxCol][cellRow][cellCol] = nums[i];
+                    cellCol++;
+                    if(cellCol>2){
+                        cellCol=0;
+                        boxCol++;
+                        if(boxCol>0){
+                            boxCol=0;
+                            cellRow++;
+                            if(cellRow>2){
+                                cellRow=0;
+                                boxRow++;
+                                if(boxRow>2){
+                                    boxRow=0;
+
+                                }
+                            }
+                        }
+                    }
+
                 }
 
-                System.out.println(Arrays.toString(nums));
-//                if(nums[1]==1)
-//                    System.out.println(nums[1]);
-
-//
+                System.out.println(Arrays.toString(arr));
             }
 
 
@@ -52,6 +85,12 @@ public class ReadTextFile {
             e.printStackTrace();
         }
 
+    }
+
+
+
+    public int[][][][] getGrid(){
+        return arr;
     }
 
 }
