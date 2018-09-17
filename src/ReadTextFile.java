@@ -6,15 +6,13 @@ import java.util.Arrays;
 
 public class ReadTextFile {
 
-    private  int[][][][] arr;
-    private int boxRow, boxCol, cellRow, cellCol;
+    private  Cell [][] arr;
+    private int row, col;
 
     public ReadTextFile(){
-        arr =new int[3][3][3][3];
-        boxRow=0;
-        boxCol=0;
-        cellRow=0;
-        cellCol=0;
+        arr =new Cell[9][9];
+        row=0;
+        col=0;
 
         String[] a = new String[9];
 
@@ -35,29 +33,22 @@ public class ReadTextFile {
                     int q = Integer.parseInt(a[i]);
                     nums[i]=q;
 
-                    arr[boxRow][boxCol][cellRow][cellCol] = nums[i];
-                    cellCol++;
-                    if(cellCol>2){
-                        cellCol=0;
-                        boxCol++;
-                        if(boxCol>2){
-                            boxCol=0;
-                            cellRow++;
-                            if(cellRow>2){
-                                cellRow=0;
-                                boxRow++;
-                                if(boxRow>2){
-                                    boxRow=0;
-
-                                }
-                            }
+//                    arr[boxRow][boxCol][cellRow][cellCol] = nums[i];
+                    arr[row][col].setVal(nums[i]);
+                    col++;
+                    if(col>8){
+                        col=0;
+                        row++;
+                        if(row>8){
+                            row=0;
                         }
                     }
-
                 }
 
-//                System.out.println(Arrays.toString(arr));
             }
+
+//                System.out.println(Arrays.toString(arr));
+
 
 
 
@@ -65,15 +56,6 @@ public class ReadTextFile {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                for (int k = 0; k < 3; k++) {
-                    for (int l = 0; l < 3; l++) {
-                        System.out.print(arr[i][k][j][l]);
-                    }
-                }
-            }
-        }
     }
 
 
@@ -86,7 +68,7 @@ public class ReadTextFile {
 
 
 
-    public int[][][][] getGrid(){
+    public Cell[][] getGrid(){
         return arr;
     }
 
