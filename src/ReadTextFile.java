@@ -6,17 +6,11 @@ import java.util.Arrays;
 
 public class ReadTextFile {
 
-    private static int[][][][] arr;
+    private  int[][][][] arr;
+    private int boxRow, boxCol, cellRow, cellCol;
 
     public ReadTextFile(){
         arr =new int[3][3][3][3];
-    }
-
-
-    public static void main(String[] args) throws IOException {
-
-        int boxRow, boxCol, cellRow, cellCol;
-
         boxRow=0;
         boxCol=0;
         cellRow=0;
@@ -37,20 +31,6 @@ public class ReadTextFile {
                 a = readLine.split(" ");
 
                 int[] nums = new int[9];
-//                for (int i = 0; i < 3; i++) {
-//                    for (int j = 0; j < 3; j++) {
-//                        for (int k = 0; k < 3; k++) {
-//                            for (int l = 0; l < 3; l++) {
-//                                int q = Integer.parseInt(a[i]);
-//                                nums[i]=q;
-//                                array [i][k][j][l] = q;
-//                            }
-//
-//                        }
-//
-//                    }
-//
-//                }
                 for (int i = 0; i < 9; i++) {
                     int q = Integer.parseInt(a[i]);
                     nums[i]=q;
@@ -60,7 +40,7 @@ public class ReadTextFile {
                     if(cellCol>2){
                         cellCol=0;
                         boxCol++;
-                        if(boxCol>0){
+                        if(boxCol>2){
                             boxCol=0;
                             cellRow++;
                             if(cellRow>2){
@@ -76,7 +56,7 @@ public class ReadTextFile {
 
                 }
 
-                System.out.println(Arrays.toString(arr));
+//                System.out.println(Arrays.toString(arr));
             }
 
 
@@ -85,7 +65,24 @@ public class ReadTextFile {
             e.printStackTrace();
         }
 
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    for (int l = 0; l < 3; l++) {
+                        System.out.print(arr[i][k][j][l]);
+                    }
+                }
+            }
+        }
     }
+
+
+//    public static void main(String[] args) throws IOException {
+//
+//
+//
+//
+//    }
 
 
 
