@@ -33,8 +33,8 @@ public class ReadTextFile {
                     int q = Integer.parseInt(a[i]);
                     nums[i]=q;
 
-//                    arr[boxRow][boxCol][cellRow][cellCol] = nums[i];
-                    arr[row][col].setVal(nums[i]);
+                    arr[row][col] = new Cell(row,col,nums[i]);
+//                    arr[row][col].setVal(nums[i]);
                     col++;
                     if(col>8){
                         col=0;
@@ -47,7 +47,6 @@ public class ReadTextFile {
 
             }
 
-//                System.out.println(Arrays.toString(arr));
 
 
 

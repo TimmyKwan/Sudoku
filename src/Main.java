@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 
 public class Main extends JPanel {
-    private int[][][][] grid;
 
     public Main(int w,int h) {
         setSize(w, h);
