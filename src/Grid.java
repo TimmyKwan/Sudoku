@@ -48,7 +48,7 @@ public class Grid {
                 for (int k = 0; k < 3; k++) {
                     for (int l = 0; l < 3; l++) {
                         g2.drawRect(k*81 + i*243, l*81 + j*243, 81,81);
-                        g2.drawString(Integer.toString(grid[i+k][j+l].getVal()),k*81 + i*243 + 28, l*81 + j*243 + 55);
+                        g2.drawString(Integer.toString(grid[l + j*3][k + i*3].getVal()),k*81 + i*243 + 28, l*81 + j*243 + 55);
                     }
                 }
             }
