@@ -19,9 +19,34 @@ public class Grid {
                 grid[i][j] = new Cell(i, j, arr[i][j].getVal());
             }
         }
+        System.out.println(grid[0][0].getpValues());
+        solver();
+        System.out.println(grid[0][0].getpValues());
     }
 
     public void solver(){
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (grid[i][j].getVal() == 0){
+                    ArrayList<Integer> temp = grid[i][j].getpValues();
+                    for (int k = 0; k < 9; k++) {
+                        //check horizontal
+                        if (temp.contains(grid[i][k].getVal())){
+                            temp.remove(temp.indexOf(grid[i][k].getVal()));
+                        }
+                        //check vertical
+                        if (temp.contains(grid[k][j].getVal())){
+                            temp.remove(temp.indexOf(grid[k][j].getVal()));
+                        }
+                        //check boxes
+//                        if (temp.contains(grid[i + (k/3)][j + (k - ( (k/3) * 3) )].getVal())){
+//                            temp.remove(temp.indexOf(grid[i + (k/3)][j + (k - ( (k/3) * 3) )].getVal()));
+//                        }
+                    }
+                    grid[i][j].setpValues(temp);
+                }
+            }
+        }
     }
 
     public void draw(Graphics2D g2){
