@@ -58,14 +58,6 @@ public class ReadTextFile {
     }
 
 
-//    public static void main(String[] args) throws IOException {
-//
-//
-//
-//
-//    }
-
-
 
     public Cell[][] getGrid(){
         return arr;

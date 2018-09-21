@@ -19,22 +19,10 @@ public class Grid {
                 grid[i][j] = new Cell(i, j, arr[i][j].getVal());
             }
         }
-//        for (int i = 0; i < 9; i++) {
-//            for (int j = 0; j < 9; j++) {
-//                System.out.print(grid[i][j].getVal());
-//            }
-//        }
-
     }
 
-//    public void solver(){
-//        ArrayList[][][][]list = new ArrayList[9][9][9][9];
-//        for (int i = 1; i < 10; i++) {
-//            if(list[i].)
-//        }
-//
-//    }
-
+    public void solver(){
+    }
 
     public void draw(Graphics2D g2){
         g2.setFont(new Font("Lucida Grande",Font.PLAIN,38));
