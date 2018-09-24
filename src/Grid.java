@@ -21,9 +21,7 @@ public class Grid {
                 grid[i][j] = new Cell(i, j, arr[i][j].getVal());
             }
         }
-//        solver();
     }
-
 
     public void solver(){
         for (int i = 0; i < 9; i++) {
@@ -58,22 +56,25 @@ public class Grid {
         }
     }
 
+    public void solver2(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; i < 3; i++) {
+                    for (int l = 0; j < 3; j++) {
+                        ArrayList<Integer> mergedPValues = new ArrayList<Integer>();
+                        mergedPValues.addAll(grid[i*3 + k][j*3 + l].getpValues());
+                    }
+                }
+            }
+        }
+
+    }
+
     public void update(int i, int j, ArrayList<Integer> temp){
         grid[i][j].setpValues(temp);
         //check if one value
         if (grid[i][j].getpValues().size() == 1)
             grid[i][j].setVal(grid[i][j].getpValues().get(0));
-    }
-
-    public int zeroCount(){
-        int sum = 0;
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (grid[i][j].getVal() == 0)
-                    sum++;
-            }
-        }
-        return sum;
     }
 
     public void draw(Graphics2D g2){
