@@ -1,5 +1,7 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.lang.reflect.Array;
@@ -19,8 +21,9 @@ public class Grid {
                 grid[i][j] = new Cell(i, j, arr[i][j].getVal());
             }
         }
-        solver();
+//        solver();
     }
+
 
     public void solver(){
         for (int i = 0; i < 9; i++) {
@@ -32,24 +35,34 @@ public class Grid {
                         if (temp.contains(grid[i][k].getVal())){
                             temp.remove(temp.indexOf(grid[i][k].getVal()));
                         }
+                        update(i,j,temp);
+
                         //check vertical
                         if (temp.contains(grid[k][j].getVal())){
                             temp.remove(temp.indexOf(grid[k][j].getVal()));
                         }
+                        update(i,j,temp);
+
                         //check boxes
-                        if (temp.contains(grid[i/3 + (k/3)][j/3 + (k - ( (k/3) * 3) )].getVal())){
-                            temp.remove(temp.indexOf(grid[i/3 + (k/3)][j/3 + (k - ( (k/3) * 3) )].getVal()));
+                        if (temp.contains(grid[(i/3)*3 + (k/3)][(j/3)*3 + (k - ( (k/3) * 3) )].getVal())){
+                            temp.remove(temp.indexOf(grid[(i/3)*3 + (k/3)][(j/3)*3 + (k - ( (k/3) * 3) )].getVal()));
                         }
+                        update(i,j,temp);
+
                     }
-                    grid[i][j].setpValues(temp);
+
                 }
 
-                //check if one value
-                if (grid[i][j].getpValues().size() == 1)
-                    grid[i][j].setVal(grid[i][j].getpValues().get(0));
 
             }
         }
+    }
+
+    public void update(int i, int j, ArrayList<Integer> temp){
+        grid[i][j].setpValues(temp);
+        //check if one value
+        if (grid[i][j].getpValues().size() == 1)
+            grid[i][j].setVal(grid[i][j].getpValues().get(0));
     }
 
     public int zeroCount(){
@@ -75,7 +88,10 @@ public class Grid {
                 for (int k = 0; k < 3; k++) {
                     for (int l = 0; l < 3; l++) {
                         g2.drawRect(k*81 + i*243, l*81 + j*243, 81,81);
-                        g2.drawString(Integer.toString(grid[l + j*3][k + i*3].getVal()),k*81 + i*243 + 28, l*81 + j*243 + 55);
+                        if (grid[l + j*3][k + i*3].getVal() == 0){
+                        }
+                        else
+                            g2.drawString(Integer.toString(grid[l + j*3][k + i*3].getVal()),k*81 + i*243 + 28, l*81 + j*243 + 55);
                     }
                 }
             }

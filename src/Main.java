@@ -6,8 +6,12 @@ import java.io.BufferedReader;
 
 public class Main extends JPanel {
 
+    private Grid gr;
+
     public Main(int w,int h) {
         setSize(w, h);
+        gr = new Grid();
+        setUpKeyListener();
     }
 
     public static void main(String[] args) {
@@ -27,12 +31,35 @@ public class Main extends JPanel {
         frame.setResizable(false);
     }
 
+    public void setUpKeyListener(){
+        addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+                if (e.getKeyChar() == KeyEvent.VK_SPACE) {
+                    gr.solver();
+                }
+            }
+
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+    }
+
     public void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         super.paintComponent(g2);
 
-        Grid gr = new Grid();
         gr.draw(g2);
+        repaint();
     }
 
 
