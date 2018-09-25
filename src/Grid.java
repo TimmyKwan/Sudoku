@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Grid {
 
@@ -33,20 +34,22 @@ public class Grid {
                         if (temp.contains(grid[i][k].getVal())){
                             temp.remove(temp.indexOf(grid[i][k].getVal()));
                         }
-                        update(i,j,temp);
 
                         //check vertical
                         if (temp.contains(grid[k][j].getVal())){
                             temp.remove(temp.indexOf(grid[k][j].getVal()));
                         }
-                        update(i,j,temp);
 
                         //check boxes
                         if (temp.contains(grid[(i/3)*3 + (k/3)][(j/3)*3 + (k - ( (k/3) * 3) )].getVal())){
                             temp.remove(temp.indexOf(grid[(i/3)*3 + (k/3)][(j/3)*3 + (k - ( (k/3) * 3) )].getVal()));
                         }
-                        update(i,j,temp);
 
+                        //update
+                        grid[i][j].setpValues(temp);
+                        //check if one value
+                        if (grid[i][j].getpValues().size() == 1)
+                            grid[i][j].setVal(grid[i][j].getpValues().get(0));
                     }
 
                 }
@@ -59,10 +62,26 @@ public class Grid {
     public void solver2(){
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                for (int k = 0; i < 3; i++) {
-                    for (int l = 0; j < 3; j++) {
-                        ArrayList<Integer> mergedPValues = new ArrayList<Integer>();
+                ArrayList<Integer> mergedPValues = new ArrayList<Integer>();
+                for (int k = 0; k < 3; k++) {
+                    for (int l = 0; l < 3; l++) {
                         mergedPValues.addAll(grid[i*3 + k][j*3 + l].getpValues());
+                    }
+                }
+                ArrayList<Integer> defValues = singleValues(mergedPValues);
+
+                for (int n : defValues) {
+                    for (int k = 0; k < 3; k++) {
+                        for (int l = 0; l < 3; l++) {
+                            if (grid[i*3 + k][j*3 + l].getpValues().contains(n)){
+                                for (int remove : grid[i*3 + k][j*3 + l].getpValues()){
+                                    if (remove != n) {
+                                        grid[i * 3 + k][j * 3 + l].getpValues().remove(grid[i * 3 + k][j * 3 + l].getpValues().indexOf(remove));
+                                    }
+
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -70,12 +89,31 @@ public class Grid {
 
     }
 
-    public void update(int i, int j, ArrayList<Integer> temp){
-        grid[i][j].setpValues(temp);
-        //check if one value
-        if (grid[i][j].getpValues().size() == 1)
-            grid[i][j].setVal(grid[i][j].getpValues().get(0));
+
+    public ArrayList<Integer> singleValues(ArrayList<Integer> list){
+        ArrayList<Integer> rList = new ArrayList<Integer>();
+
+        int[] count = new int[9];
+        for (int i = 0; i < 9; i++) {
+            count[i] = 0;
+        }
+
+        for (int n : list) {
+            for (int i = 1; i < 10; i++) {
+                if (n == i)
+                    count[i-1]++;
+            }
+        }
+
+        for (int i = 0; i < 9; i++) {
+            if (count[i] == 1) {
+                rList.add(i + 1);
+            }
+        }
+
+        return rList;
     }
+
 
     public void draw(Graphics2D g2){
         g2.setFont(new Font("Lucida Grande",Font.PLAIN,38));

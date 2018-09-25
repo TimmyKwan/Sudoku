@@ -43,6 +43,7 @@ public class Main extends JPanel {
 
                 if (e.getKeyChar() == KeyEvent.VK_SPACE) {
                     gr.solver();
+                    gr.solver2();
                 }
             }
 

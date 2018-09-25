@@ -18,7 +18,7 @@ public class ReadTextFile {
 
         try {
 
-            File f = new File("./src/s02a.txt");
+            File f = new File("./src/s03a.txt");
 
             BufferedReader b = new BufferedReader(new FileReader(f));
 
